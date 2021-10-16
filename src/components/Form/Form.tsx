@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addNewIdea } from '../../redux/todoSlice';
 
 import './Form.css';
 
-interface INewTodo {
+export interface INewTodo {
   title: string,
   description: string,
   dueBy: string
@@ -15,6 +17,7 @@ const Form = () => {
     dueBy: ''
   });
   const [error, setError] = useState<string>('');
+  const dispatch = useDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
@@ -27,6 +30,7 @@ const Form = () => {
       setError('You must fill out a title, description and due by date to add a new idea');
       return;
     }
+    dispatch(addNewIdea(newTodo));
   }
 
   return (
