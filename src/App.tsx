@@ -1,7 +1,7 @@
-import './App.css';
-
 import Form from './components/Form/Form';
 import ToDoList from './containers/ToDoList/ToDoList';
+
+import './App.css';
 
 const App: React.FunctionComponent = () => {
   return (
