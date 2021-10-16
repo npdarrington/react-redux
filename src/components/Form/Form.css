@@ -1,0 +1,28 @@
+.new-todo__form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  margin-right: .3em;
+}
+
+input {
+  margin-right: 1em;
+}
+
+button {
+  border: 1px solid black;
+  height: 1.9em;
+  width: 10em;
+  background-color: beige;
+}
+
+button:hover {
+  border: 1px solid white;
+  background-color: black;
+  color: white;
+}
