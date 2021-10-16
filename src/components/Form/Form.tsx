@@ -14,9 +14,14 @@ const Form = () => {
     description: '',
     dueBy: ''
   });
+  const [error, setError] = useState<string>('');
 
   const validateForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!newTodo.title.trim() || !newTodo.description.trim() || !newTodo.dueBy.trim()) {
+      setError('You must fill out a title, description and due by date to add a new idea');
+      return;
+    }
   }
 
   return (
@@ -28,6 +33,7 @@ const Form = () => {
       <label htmlFor="dueBy">Due By:</label>
       <input type="datetime" name="dueBy" id="dueBy" className="new-todo__form-input" />
       <button type="submit" className="new-todo__submit">Add To-Do!</button>
+      { error && <h2 className="new-todo__form-error">{error}</h2>}
     </form>
   )
 }
