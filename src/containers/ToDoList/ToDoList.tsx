@@ -1,5 +1,4 @@
-import { RootState } from '../../redux/store';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../redux/hooks';
 
 import ToDo from '../../components/ToDo/ToDo';
 
@@ -8,7 +7,7 @@ import { IToDo } from './types';
 import './ToDoList.css';
 
 const ToDoList: React.FunctionComponent = () => {
-  const todos: IToDo[] = useSelector((state: RootState) => state.value);
+  const todos: IToDo[] = useAppSelector((state) => state.value);
 
   const displayToDos = (): React.ReactNode | HTMLHeadingElement => {
     return todos.length > 0 ? (
