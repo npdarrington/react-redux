@@ -31,14 +31,16 @@ const Form = () => {
 
   return (
     <form className="new-todo__form" onSubmit={validateForm}>
-      <label htmlFor="title">Title:</label>
-      <input type="text" name="title" id="title" className="new-todo__form-input" onChange={handleChange} />
-      <label htmlFor="description">Description:</label>
-      <input type="text" name="description" id="description" className="new-todo__form-input" onChange={handleChange} />
-      <label htmlFor="dueBy">Due By:</label>
-      <input type="date" name="dueBy" id="dueBy" className="new-todo__form-input" onChange={handleChange} />
-      <button type="submit" className="new-todo__submit">Add To-Do!</button>
-      { error && <h2 className="new-todo__form-error">{error}</h2>}
+      <section className="new-todo__form-container">
+        <label htmlFor="title">Title:</label>
+        <input type="text" name="title" id="title" className="new-todo__form-input" onChange={handleChange} />
+        <label htmlFor="description">Description:</label>
+        <input type="text" name="description" id="description" className="new-todo__form-input" onChange={handleChange} />
+        <label htmlFor="dueBy">Due By:</label>
+        <input type="date" name="dueBy" id="dueBy" className="new-todo__form-input" onChange={handleChange} />
+        <button type="submit" className="new-todo__submit">Add To-Do!</button>
+      </section>
+      { error && <h2 className="new-todo__form-error error">{error}</h2>}
     </form>
   )
 }
