@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { addNewIdea } from '../../redux/todoSlice';
+
+import { useAppDispatch } from '../../redux/hooks';
 
 import './Form.css';
 
@@ -17,7 +18,7 @@ const Form = () => {
     dueBy: ''
   });
   const [error, setError] = useState<string>('');
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
