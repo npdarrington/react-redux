@@ -48,6 +48,28 @@ describe('App', () => {
       .contains('You must fill out a title, description and due by date to add a new idea');
   });
 
+  it('should allow a user to submit a new todo', () => {
+    fillInFormInfo()
+    cy.get('.new-todo__submit').click();
+    cy.get('.todo-card').should('be.visible');
+    cy.get('.todo-card__title').contains('Grocery List');
+    cy.get('.todo-card__description').contains('Order groceries from grocery list today');
+    cy.get('.todo-card__due-by').contains('Due Date: 2021-10-25');
+    cy.get('.todo-card__btn-delete').should('be.visible');
+  });
+
+  it('should allow a user to delete an existing todo', () => {
+    fillInFormInfo();
+    cy.get('.new-todo__submit').click();
+    cy.get('.todo-card').should('be.visible');
+    cy.get('.todo-card__title').contains('Grocery List');
+    cy.get('.todo-card__description').contains('Order groceries from grocery list today');
+    cy.get('.todo-card__due-by').contains('Due Date: 2021-10-25');
+    cy.get('.todo-card__btn-delete').should('be.visible').click();
+    cy.get('.todo-list-container > h2').should('be.visible');
+    cy.contains(`Your To-Do List is empty. Awesome!! Let's add some more!`);
+  });
+
   it('should render to add todos when none are visible', () => {
     cy.get('.todo-list-container > h2').should('be.visible');
     cy.contains(`Your To-Do List is empty. Awesome!! Let's add some more!`);
