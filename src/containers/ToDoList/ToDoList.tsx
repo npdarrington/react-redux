@@ -7,7 +7,7 @@ import { IToDo } from './types';
 import './ToDoList.css';
 
 const ToDoList: React.FunctionComponent = () => {
-  const todos: IToDo[] = useAppSelector((state) => state.value);
+  const todos: IToDo[] = useAppSelector((state) => state.todo.value);
 
   const displayToDos = (): React.ReactNode | HTMLHeadingElement => {
     return todos.length > 0 ? (
