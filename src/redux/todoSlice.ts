@@ -15,15 +15,19 @@ export const todoSlice = createSlice({
   name: 'todo',
   initialState,
   reducers: {
-    addNewIdea: (state, action: PayloadAction<INewTodo>) => {
+    addNewTodo: (state, action: PayloadAction<INewTodo>): void => {
       state.value.push({
         id: state.value.length,
         ...action.payload
       });
+    },
+    deleteTodo: (state, action: PayloadAction<number>): void => {
+      const foundIndex = state.value.findIndex((todo: IToDo) => todo.id === action.payload);
+      state.value.splice(foundIndex, 1);
     }
   }
 });
 
-export const { addNewIdea } = todoSlice.actions;
+export const { addNewTodo, deleteTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;
