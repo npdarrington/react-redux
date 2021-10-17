@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { addNewIdea } from '../../redux/todoSlice';
+import { addNewTodo } from '../../redux/todoSlice';
 
 import { useAppDispatch } from '../../redux/hooks';
 
@@ -37,7 +37,7 @@ const Form = () => {
 			);
 			return;
 		}
-		dispatch(addNewIdea(newTodo));
+		dispatch(addNewTodo(newTodo));
 		setError('');
 		resetForm();
 	};
