@@ -22,7 +22,7 @@ const ToDoList: React.FunctionComponent = () => {
           />)
       })
     ) : (
-      <h2>You're To-Do List is empty. Awesome!! Let's add some more!</h2>
+      <h2>Your To-Do List is empty. Awesome!! Let's add some more!</h2>
     )
   }
 
