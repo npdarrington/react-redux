@@ -1,5 +1,17 @@
 describe('App', () => {
   const websiteUrl = 'http://localhost:3000';
+  
+  const fillInFormInfo = () => {
+    cy.get('#title')
+      .type('Grocery List')
+      .should('have.value', 'Grocery List');
+    cy.get('#description')
+      .type('Order groceries from grocery list today')
+      .should('have.value', 'Order groceries from grocery list today');
+    cy.get('#dueBy')
+      .type('2021-10-25')
+      .should('have.value', '2021-10-25');
+  }
 
   beforeEach(() => {
     cy.visit(websiteUrl);
@@ -18,6 +30,22 @@ describe('App', () => {
     cy.get('#description').should('be.visible');
     cy.get('#dueBy').should('be.visible');
     cy.get('.new-todo__submit').should('be.visible');
+  });
+
+  it('should allow user to fill out a new todo', () => {
+    fillInFormInfo();
+  });
+
+  it('should show an error message with missing form info', () => {
+    cy.get('#title')
+      .type('Grocery List')
+      .should('have.value', 'Grocery List');
+    cy.get('#description')
+      .type('Order groceries from grocery list today')
+      .should('have.value', 'Order groceries from grocery list today');
+    cy.get('.new-todo__submit').click();
+    cy.get('.new-todo__form-error')
+      .contains('You must fill out a title, description and due by date to add a new idea');
   });
 
   it('should render to add todos when none are visible', () => {
