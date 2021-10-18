@@ -87,4 +87,63 @@ describe('Store state and functionality', () => {
 				},
 			});
 	});
+
+	it('should delete a todo', () => {
+		cy.visit(websiteUrl);
+		fillInFormInfo1();
+		cy.get('.new-todo__submit').click();
+		cy.window()
+			.its('store')
+			.invoke('getState')
+			.should('deep.equal', {
+				todo: {
+					value: [todo1],
+				},
+			});
+		cy.get('.todo-card__btn-delete').click();
+		cy.window()
+			.its('store')
+			.invoke('getState')
+			.should('deep.equal', {
+				todo: {
+					value: [],
+				},
+			});
+	});
+
+	it('should delete multiple todos', () => {
+		cy.visit(websiteUrl);
+		fillInFormInfo1();
+		cy.get('.new-todo__submit').click();
+		fillInFormInfo2();
+		cy.get('.new-todo__submit').click();
+		fillInFormInfo3();
+		cy.get('.new-todo__submit').click();
+		cy.window()
+			.its('store')
+			.invoke('getState')
+			.should('deep.equal', {
+				todo: {
+					value: [todo1, todo2, todo3],
+				},
+			});
+    cy.get('.todo-card__btn-delete').first().click();
+    cy.window()
+			.its('store')
+			.invoke('getState')
+			.should('deep.equal', {
+				todo: {
+					value: [todo2, todo3],
+				},
+			});
+    cy.get('.todo-card__btn-delete').last().click();
+    cy.window()
+			.its('store')
+			.invoke('getState')
+			.should('deep.equal', {
+				todo: {
+					value: [todo2],
+				},
+			});
+	});
 });
