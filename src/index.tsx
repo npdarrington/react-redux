@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import App from './App';
 
 import { store } from './redux/store';
@@ -15,3 +16,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+if ((window as any).Cypress) {
+  (window as any).store = store;
+}
